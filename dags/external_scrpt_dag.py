@@ -5,7 +5,7 @@ from datetime import datetime
 import subprocess
 
 def run_script():
-    script_path = "/opt/airflow/dags/abc.py"
+    script_path = "*your directory*/abc.py"
     result = subprocess.run(["python3", script_path], capture_output=True, text=True)
     if result.returncode != 0:
         raise Exception(f"Script failed: {result.stderr}")
@@ -34,7 +34,7 @@ with DAG(
 
     send_email = EmailOperator(
         task_id="send_email",
-        to="kishoretheshuttler@gmail.com",
+        to="youremail@email.com",
         subject="✅ External Script Executed Successfully",
         html_content="<p>The external Python script has completed successfully.</p>",
         conn_id="f61b398ea26e",  # Make sure this matches the Airflow connection ID
